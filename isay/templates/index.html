@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block misc %}
+<style>
+	body{
+		background-color: #589298;
+		}
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="jumbotron" style="margin-left:600px;margin-top:170px;width:350px;">
+    <h1>Isay.com</h1> 
+    
+  </div>
+<div class="mydiv" style="margin-left:540px;margin-top:100px;">
+<button  class="btn btn-lg"><a href="{% url 'login' %}"><img style="height:200px;width250px;" src="/media/item_image/login.jpeg"></img></a></button>
+<span style="padding-left:240px;">
+<button class="btn btn-lg"><a href="{% url 'register' %}"><img style="height:200px;width250px;" src="/media/item_image/register.jpg"></img></a></button>
+</span>
+
+</div>
+
+
+{% endblock %}

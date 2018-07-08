@@ -1,0 +1,107 @@
+
+
+
+
+{% extends 'base.html' %}
+{% block misc %}
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<style>
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+</style>
+<style type="text/css">
+	body{
+		background-color: #E8E8E8;
+	}
+</style>
+
+{% include 'snippets/tags.html' %}
+{% include 'snippets/sidenavbar.html' %}
+{% include 'snippets/ratinginput.html' %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class=" hidden-sm hidden-xs hidden-md w3-sidebar w3-bar-block  w3-card" style="width:160px;">
+  <img style="padding-left:10px" src="/media/item_image/user-icon.png" alt="Avatar" class="avatar">
+	  <h4 style="padding-left:5px">{{ request.user.username }}<p>{{ " "}}</p><small>joined{{" "}} {{ user.profile.timestamp.year }}</small> </h4>
+
+
+  <div>
+
+  	<h4 style="padding-left:5px; ">Followers</h4>
+  	<div style="padding-left:27px;" ><h4>{{ request.user.profile.count_followers }}</h4></div>
+  </div>
+  
+  <div>
+
+  	<h4 style="padding-left:5px">Following</h4>
+  	<div style="padding-left:27px" ><h4>{{ request.user.profile.count_following}}</h4></div>
+  </div>
+</div>
+
+
+
+<div class="w3-container" style="margin-left:160px">
+{% include 'snippets/navbar.html' %}
+</div>
+	
+
+
+
+
+
+
+<div  class="container">
+	
+
+
+
+
+
+
+<div class="container" style="margin-left:9%;background-color:white;">
+	<br/>
+{% for i in item_list %}
+<div class="row">
+	<div class="col-md-3">
+{% if  i.image %}
+<div class="img-responsive">
+	<img  height='240'  width='380' src="{{  i.image.url }}"> </img>
+	</div>
+	{% endif %}
+	
+
+</div>
+
+	<div class="{% if  i.image %} col-md-7 col-md-offset-1 {% else %} col-md-11  {% endif %} ">
+	<h3>{{ i.title }}<a href=" {% url 'profiles:profile' username=i.user.username  %} " style="decorate:'none' ; " >  <small> {{ ' ' }} {{ i.user.username }}</small> </a></h3>
+	<p>{{ i.review }}</p>
+	<small>Ratings</small><br/>
+		{% for j in i.return_rating %}
+		<span style="color: orange;" class="fa fa-star"></span>
+
+		{% endfor %}
+			{% for j in i.return_notrating %}
+		<span  class="fa fa-star"></span>
+
+		{% endfor %}
+		<br/>
+	{% for t in i.get_tags %}
+		<span class="badge badge-info">{{ t }}</span>
+
+	{% endfor %}
+	</div>
+
+</div>
+<hr/>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+
+
+
+
+
+
+
+
+{% extends 'base.html' %}
+{% block title %} {{ block.super }} Login {% endblock %}
+{% block misc %}
+{% include 'snippets/cssreglogin.html' %}
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+     
+      <a class="navbar-brand" href="{% url 'index' %}">Isay</a>
+	  
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+      <ul class="nav navbar-nav navbar-right">
+	  
+	  
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+   
+    </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  
+<div>
+	      
+
+<div class="container" >
+	 
+    <div class="col-md-4 col-md-offset-4" >
+    	<h1>Register Here!!</h1>
+        <div id="logbox"  >
+
+            <form  id="signup" method="post" action="." >
+                
+		{% csrf_token %}
+		{% for field in form %}
+	 				{% if field.errors%}
+                        <div class="alert alert-warning">
+						    <a href="#" class="close" data-dismiss="alert">&times;</a>
+						    <strong>Warning!</strong> {{ field.errors }}
+						</div>
+                          {% endif %} 
+                            {{ field.label_tag   }}
+                            {{  field }}                                       
+                        
+        {% endfor %}
+                <input type="submit" value="Sign me up!" class="inputButton"/>
+
+            </form>
+            <p><a href="{% url 'login' %}"> Already registered ?</a></p>
+        </div>
+    </div>
+    <!--col-md-6-->
+
+
+</div>
+</div>
+
+{% endblock %}

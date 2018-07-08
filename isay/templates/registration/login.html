@@ -1,0 +1,89 @@
+
+
+{% extends 'base.html' %}
+{% block title %} {{ block.super }} Login {% endblock %}
+{% block misc %}
+{% include 'snippets/cssreglogin.html' %}
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+     
+      <a class="navbar-brand" href="{% url 'index' %}">Isay</a>
+      
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+      <ul class="nav navbar-nav navbar-right">
+      
+      
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+   
+
+    </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  
+<div>
+          
+
+<div class="container" >
+
+    <div class="col-md-4 col-md-offset-4" >
+      {% if reg %}
+     <h1> You Are succesfully registered , Now Login !! </h1>
+     {% endif %}
+        <h1>Login</h1>
+
+        <div id="logbox"  >
+
+            <form  id="signin" method="post" action="." >
+                
+        {% csrf_token %}
+      
+                   
+                            {{ form.username.label_tag   }}
+                             <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            {{  form.username }}   
+                            </div>  
+
+
+                   
+                            {{ form.password.label_tag   }}
+                             <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            {{  form.password }}   
+                            </div>                                    
+                        <br>
+                           {% if form.errors %}
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Warning!</strong> Username And Password doesn't match
+                        </div>
+                          {% endif %}
+                <input name="next" type="hidden" value="{% url 'profiles:home' %}" >
+                <input type="submit" value="Sign in!" class="inputButton"/>
+
+            </form>
+             <p><a href="{% url 'register' %}"> Not registered ?</a></p>
+        </div>
+    </div>
+    <!--col-md-6-->
+
+
+</div>
+</div>
+
+{% endblock %}
